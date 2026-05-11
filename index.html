@@ -4,37 +4,244 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Torneo de Vóley Súper 4 - Resultados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* Mismos estilos que antes, pero sin los controles */
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
-        h1 { text-align: center; color: #2c3e50; }
-        .contenedor { display: flex; flex-direction: column; gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .categoria { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .tabla-container { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
-        th, td { padding: 10px; text-align: center; border: 1px solid #e0e0e0; }
-        th { background-color: #4a86b8; color: white; font-weight: normal; text-transform: uppercase; }
-        .col-equipo { text-align: left; font-weight: bold; color: #555; }
-        .positivo { color: #27ae60; font-weight: bold; }
-        .negativo { color: #e74c3c; font-weight: bold; }
-        .historial-partidos { margin-top: 20px; padding: 15px; background-color: #fafafa; border-left: 4px solid #4a86b8; }
-        .historial-partidos ul { list-style: none; padding: 0; margin: 0; }
-        .historial-partidos li { padding: 8px 0; border-bottom: 1px dashed #ccc; color: #555; }
-        .fecha-historial { font-size: 0.85em; color: #888; margin-right: 10px; }
+        :root {
+            --primary-color: #1e3a8a; /* Azul deportivo oscuro */
+            --secondary-color: #3b82f6; /* Azul claro */
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --positive: #10b981;
+            --negative: #ef4444;
+            --neutral: #94a3b8;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-color); 
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 40px 20px; 
+        }
+
+        .header-torneo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 { 
+            color: var(--primary-color); 
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .contenedor { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        .categoria { 
+            background: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); 
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tabla-container { 
+            overflow-x: auto; 
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 14px; 
+            white-space: nowrap;
+        }
+
+        th, td { 
+            padding: 14px 16px; 
+            text-align: center; 
+        }
+
+        th { 
+            background-color: #f8fafc; 
+            color: var(--text-muted); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .col-equipo { 
+            text-align: left; 
+            font-weight: 600; 
+            color: var(--primary-color); 
+            font-size: 15px;
+        }
+
+        /* Diseño de Píldoras para Diferencia de Sets */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            min-width: 24px;
+        }
+        .badge.positivo { background-color: var(--positive); }
+        .badge.negativo { background-color: var(--negative); }
+        .badge.neutro { background-color: var(--neutral); color: white; }
+
+        .historial-partidos { 
+            margin-top: 30px; 
+        }
+
+        .historial-partidos h3 {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .lista-partidos { 
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        /* Tarjetas de Resultados */
+        .partido-card { 
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .partido-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .partido-fecha { 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .partido-resultado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .eq-nombre { flex: 1; }
+        .eq-nombre.right { text-align: right; }
+        
+        .marcador-sets {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .partido-detalles {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        /* Columna de Puntos resaltada */
+        td:nth-child(2) {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            background-color: #f8fafc;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; }
+            .categoria { padding: 15px; }
+            h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>Torneo de Vóley Súper 4</h1>
+    <div class="header-torneo">
+        <h1>Súper 4</h1>
+        <div class="subtitle">Resultados Oficiales Vóleibol</div>
+    </div>
 
     <div class="contenedor">
         <div class="categoria" id="seccion-masculino">
-            <h2>Cuadrangular Masculino</h2>
+            <h2>🏆 Cuadrangular Masculino</h2>
             <div class="tabla-container">
                 <table id="tabla-masculino">
                     <thead>
                         <tr>
-                            <th class="col-equipo">EQUIPO</th>
+                            <th class="col-equipo">Equipo</th>
                             <th>PJE</th><th>PTDOS</th><th>GNDOS</th>
                             <th>SET+</th><th>SET-</th><th>DIFSET</th>
                             <th>PTOS+</th><th>PTOS-</th><th>SETAVG</th><th>PTOSAVG</th>
@@ -44,18 +251,18 @@
                 </table>
             </div>
             <div class="historial-partidos">
-                <h3>Resultados Oficiales</h3>
-                <ul id="historial-masculino"></ul>
+                <h3>Últimos Resultados</h3>
+                <div class="lista-partidos" id="historial-masculino"></div>
             </div>
         </div>
 
         <div class="categoria" id="seccion-femenino">
-            <h2>Cuadrangular Femenino</h2>
+            <h2>🏆 Cuadrangular Femenino</h2>
             <div class="tabla-container">
                 <table id="tabla-femenino">
                     <thead>
                         <tr>
-                            <th class="col-equipo">EQUIPO</th>
+                            <th class="col-equipo">Equipo</th>
                             <th>PJE</th><th>PTDOS</th><th>GNDOS</th>
                             <th>SET+</th><th>SET-</th><th>DIFSET</th>
                             <th>PTOS+</th><th>PTOS-</th><th>SETAVG</th><th>PTOSAVG</th>
@@ -65,23 +272,22 @@
                 </table>
             </div>
             <div class="historial-partidos">
-                <h3>Resultados Oficiales</h3>
-                <ul id="historial-femenino"></ul>
+                <h3>Últimos Resultados</h3>
+                <div class="lista-partidos" id="historial-femenino"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // 1. AQUÍ CONFIGURAS LOS EQUIPOS (Solo los nombres, el resto inicia en 0)
-        const equiposMasculino = ["UC Masculino", "UAI", "UCH", "USACH"];
-        const equiposFemenino = ["UC Femenino", "Pirque F", "ADV Curico F", "Chicureo F"];
+        // 1. AQUÍ CONFIGURAS LOS EQUIPOS
+        const equiposMasculino = ["CEV Chicureo", "Pirque", "ADV Curico", "Dep. San Carlos"];
+        const equiposFemenino = ["Machi Voley F", "Pirque F", "ADV Curico F", "Chicureo F"];
 
         // 2. TÚ ERES LA BASE DE DATOS: Agrega los partidos aquí a medida que se jueguen.
-        // Ejemplo de formato: { fecha: "11-05-2026", equipoA: "CEV Chicureo", setsA: 3, equipoB: "Pirque", setsB: 0, ptosA: 75, ptosB: 60 }
         const partidosJugados = {
             masculino: [
                 // ¡Agrega los partidos masculinos debajo de esta línea!
-                { fecha: "11-05-2026", equipoA: "UC Masculino", setsA: 3, equipoB: "UCH", setsB: 1, ptosA: 98, ptosB: 85 }
+                { fecha: "11-05-2026", equipoA: "CEV Chicureo", setsA: 3, equipoB: "Pirque", setsB: 1, ptosA: 98, ptosB: 85 }
                 
             ],
             femenino: [
@@ -91,7 +297,7 @@
         };
 
         // =====================================================================
-        // DE AQUÍ HACIA ABAJO EL CÓDIGO HACE LA MAGIA, NO NECESITAS TOCARLO
+        // LÓGICA INTACTA
         // =====================================================================
 
         function calcularYMostrar() {
@@ -99,12 +305,10 @@
                 let nombresEquipos = cat === 'masculino' ? equiposMasculino : equiposFemenino;
                 let partidos = partidosJugados[cat];
                 
-                // Crear estructura base de estadísticas
                 let stats = nombresEquipos.map(nombre => ({
                     nombre: nombre, pje: 0, ptdos: 0, gndos: 0, set_plus: 0, set_minus: 0, ptos_plus: 0, ptos_minus: 0
                 }));
 
-                // Calcular estadísticas basadas en los partidos jugados
                 partidos.forEach(p => {
                     let eqA = stats.find(e => e.nombre === p.equipoA);
                     let eqB = stats.find(e => e.nombre === p.equipoB);
@@ -127,7 +331,6 @@
                     }
                 });
 
-                // Ordenar tabla
                 stats.sort((a, b) => {
                     if (b.pje !== a.pje) return b.pje - a.pje;
                     let aSetAvg = a.set_minus === 0 ? a.set_plus : a.set_plus / a.set_minus;
@@ -138,12 +341,16 @@
                     return bPtosAvg - aPtosAvg;
                 });
 
-                // Dibujar Tabla
+                // Inyectar HTML actualizado con nuevas clases CSS
                 let tbody = document.querySelector(`#tabla-${cat} tbody`);
                 tbody.innerHTML = '';
                 stats.forEach(eq => {
                     let difset = eq.set_plus - eq.set_minus;
-                    let formatoDifset = difset > 0 ? `<span class="positivo">+${difset}</span>` : (difset < 0 ? `<span class="negativo">${difset}</span>` : difset);
+                    
+                    // Asignar clase para la píldora de color
+                    let claseBadge = difset > 0 ? 'positivo' : (difset < 0 ? 'negativo' : 'neutro');
+                    let formatoDifset = `<span class="badge ${claseBadge}">${difset > 0 ? '+'+difset : difset}</span>`;
+                    
                     let setavg = eq.set_minus === 0 ? eq.set_plus : (eq.set_plus / eq.set_minus).toFixed(2);
                     let ptosavg = eq.ptos_minus === 0 ? eq.ptos_plus : (eq.ptos_plus / eq.ptos_minus).toFixed(2);
 
@@ -157,12 +364,22 @@
                     `;
                 });
 
-                // Dibujar Historial
-                let historialUl = document.getElementById(`historial-${cat}`);
-                historialUl.innerHTML = '';
+                // Inyectar Historial con formato de Tarjeta
+                let historialDiv = document.getElementById(`historial-${cat}`);
+                historialDiv.innerHTML = '';
                 partidos.forEach(p => {
                     let fechaPartida = p.fecha.split("-").join("/");
-                    historialUl.innerHTML += `<li><span class="fecha-historial">[${fechaPartida}]</span> <strong>${p.equipoA}</strong> ${p.setsA} - ${p.setsB} <strong>${p.equipoB}</strong> <small>(Puntos: ${p.ptosA}-${p.ptosB})</small></li>`;
+                    historialDiv.innerHTML += `
+                        <div class="partido-card">
+                            <div class="partido-fecha">📅 ${fechaPartida}</div>
+                            <div class="partido-resultado">
+                                <div class="eq-nombre">${p.equipoA}</div>
+                                <div class="marcador-sets">${p.setsA} - ${p.setsB}</div>
+                                <div class="eq-nombre right">${p.equipoB}</div>
+                            </div>
+                            <div class="partido-detalles">Puntos totales: ${p.ptosA} - ${p.ptosB}</div>
+                        </div>
+                    `;
                 });
             });
         }
