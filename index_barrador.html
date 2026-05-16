@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0055a4; /* Azul UC / Mikasa */
-            --secondary-color: #009de0; /* Celeste claro */
+            --primary-color: #0055a4; /* Azul UC / Mikasa predeterminado */
+            --secondary-color: #009de0; /* Celeste claro predeterminado */
             --bg-color: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #334155;
@@ -18,6 +18,16 @@
             --neutral: #94a3b8;
             --gold: #f59e0b; /* Color para destacar finales */
         }
+
+        /* ============================================================
+           CAMBIO DE COLOR SECCIÓN FEMENINA A TURQUESA
+           Sobrescribimos las variables solo para este contenedor
+        ============================================================ */
+        #seccion-femenino {
+            --primary-color: #0d9488; /* Turquesa oscuro para textos y marcadores */
+            --secondary-color: #22d3ee; /* Turquesa claro para borde superior y acentos */
+        }
+        /* ============================================================ */
 
         body { 
             font-family: 'Inter', sans-serif; 
@@ -35,7 +45,7 @@
         }
 
         h1 { 
-            color: var(--primary-color); 
+            color: #0055a4; /* Mantenemos el azul original de la UC en el título principal */
             font-size: 2.5rem;
             font-weight: 800;
             text-transform: uppercase;
@@ -45,7 +55,7 @@
         }
 
         .subtitle {
-            color: var(--secondary-color);
+            color: #009de0;
             font-weight: 600;
             font-size: 1.1rem;
             margin-top: 5px;
@@ -64,10 +74,12 @@
             padding: 30px; 
             border-radius: 16px; 
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); 
+            /* El color del borde superior ahora depende de --secondary-color scoped */
             border-top: 5px solid var(--secondary-color);
         }
 
         h2 {
+            /* El color del título H2 ahora depende de --primary-color scoped */
             color: var(--primary-color);
             margin-top: 0;
             margin-bottom: 20px;
@@ -121,6 +133,7 @@
         .col-equipo { 
             text-align: left; 
             font-weight: 600; 
+            /* El color del nombre del equipo depende de --primary-color scoped */
             color: var(--primary-color); 
             font-size: 15px;
         }
@@ -174,7 +187,7 @@
 
         .partido-card.playoff {
             border: 1px solid var(--gold);
-            background: #fffbeb; /* Fondo amarillento muy suave */
+            background: #fffbeb; 
         }
         
         .playoff-etiqueta {
@@ -207,6 +220,7 @@
         .eq-nombre.right { text-align: right; }
         
         .marcador-sets {
+            /* El fondo del marcador depende de --primary-color scoped */
             background: var(--primary-color);
             color: white;
             padding: 4px 12px;
@@ -237,17 +251,18 @@
 
         td:nth-child(2) {
             font-weight: 800;
+            /* La columna PJE depende de --primary-color scoped */
             color: var(--primary-color);
             font-size: 1.1rem;
             background-color: #f8fafc;
         }
 
-        /* Título para separar la fase final */
         .separador-fase {
             grid-column: 1 / -1;
             margin-top: 15px;
             margin-bottom: 5px;
             font-size: 1.1rem;
+            /* Título separador depende de --primary-color scoped */
             color: var(--primary-color);
             font-weight: 800;
             text-transform: uppercase;
@@ -319,35 +334,29 @@
         // 2. BASE DE DATOS DE PARTIDOS (FIXTURE)
         const partidosJugados = {
             masculino: [
-                // FASE REGULAR (Suman puntos)
                 { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Excelsior", equipoB: "Stadio Italiano", jugado: false },
                 { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Zada", jugado: false },
                 { fecha: "Sáb 16 Mayo - 17:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
                 { fecha: "Sáb 16 Mayo - 18:45 hrs", equipoA: "Excelsior", equipoB: "Zada", jugado: false },
                 { fecha: "Dom 17 Mayo - 14:30 hrs", equipoA: "Universidad Católica", equipoB: "Excelsior", jugado: false },
                 { fecha: "Dom 17 Mayo - 15:45 hrs", equipoA: "Zada", equipoB: "Stadio Italiano", jugado: false },
-                
-                // FASE FINAL (No suman puntos, tienen la etiqueta esPlayoff: true)
                 { fecha: "Dom 17 Mayo - 17:00 hrs", equipoA: "3° Lugar Varones", equipoB: "4° Lugar Varones", jugado: false, esPlayoff: true, etiqueta: "Tercer Lugar" },
                 { fecha: "Dom 17 Mayo - 18:30 hrs", equipoA: "1° Lugar Varones", equipoB: "2° Lugar Varones", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
             ],
             femenino: [
-                // FASE REGULAR (Suman puntos)
                 { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Colo Colo", equipoB: "Stadio Italiano", jugado: false },
                 { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Boston College", jugado: false },
                 { fecha: "Sáb 16 Mayo - 17:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
                 { fecha: "Sáb 16 Mayo - 18:45 hrs", equipoA: "Colo Colo", equipoB: "Boston College", jugado: false },
                 { fecha: "Dom 17 Mayo - 14:30 hrs", equipoA: "Universidad Católica", equipoB: "Colo Colo", jugado: false },
                 { fecha: "Dom 17 Mayo - 15:45 hrs", equipoA: "Boston College", equipoB: "Stadio Italiano", jugado: false },
-
-                // FASE FINAL (No suman puntos, tienen la etiqueta esPlayoff: true)
                 { fecha: "Dom 17 Mayo - 17:00 hrs", equipoA: "3° Lugar Damas", equipoB: "4° Lugar Damas", jugado: false, esPlayoff: true, etiqueta: "Tercer Lugar" },
                 { fecha: "Dom 17 Mayo - 18:30 hrs", equipoA: "1° Lugar Damas", equipoB: "2° Lugar Damas", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
             ]
         };
 
         // =====================================================================
-        // LÓGICA DE CÁLCULO Y RENDERIZADO
+        // LÓGICA DE CÁLCULO Y RENDERIZADO (INTACTA)
         // =====================================================================
 
         function calcularYMostrar() {
@@ -359,7 +368,6 @@
                     nombre: nombre, pje: 0, ptdos: 0, gndos: 0, set_plus: 0, set_minus: 0, ptos_plus: 0, ptos_minus: 0
                 }));
 
-                // Calcular puntos SOLO de los partidos que NO son playoff (esPlayoff: false o undefined)
                 partidos.forEach(p => {
                     if (p.jugado && !p.esPlayoff) {
                         let eqA = stats.find(e => e.nombre === p.equipoA);
@@ -384,7 +392,6 @@
                     }
                 });
 
-                // Ordenar tabla de posiciones
                 stats.sort((a, b) => {
                     if (b.pje !== a.pje) return b.pje - a.pje;
                     let aSetAvg = a.set_minus === 0 ? a.set_plus : a.set_plus / a.set_minus;
@@ -395,7 +402,6 @@
                     return bPtosAvg - aPtosAvg;
                 });
 
-                // Inyectar HTML en la Tabla
                 let tbody = document.querySelector(`#tabla-${cat} tbody`);
                 tbody.innerHTML = '';
                 stats.forEach(eq => {
@@ -416,20 +422,17 @@
                     `;
                 });
 
-                // Inyectar Fixture/Historial
                 let historialDiv = document.getElementById(`historial-${cat}`);
                 historialDiv.innerHTML = '';
                 
                 let mostroPlayoffs = false;
 
                 partidos.forEach(p => {
-                    // Si llegamos a los playoffs, agregamos un título separador
                     if (p.esPlayoff && !mostroPlayoffs) {
                         historialDiv.innerHTML += `<div class="separador-fase">Fase Final</div>`;
                         mostroPlayoffs = true;
                     }
 
-                    // Clases CSS extra si es un partido de final
                     let claseCard = p.esPlayoff ? "partido-card playoff" : "partido-card";
                     let htmlEtiqueta = p.esPlayoff ? `<div class="playoff-etiqueta">${p.etiqueta}</div>` : "";
                     
