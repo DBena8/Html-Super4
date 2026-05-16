@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0055a4; /* Azul UC / Mikasa predeterminado */
-            --secondary-color: #009de0; /* Celeste claro predeterminado */
+            --primary-color: #0055a4; 
+            --secondary-color: #009de0; 
             --bg-color: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #334155;
@@ -16,18 +16,13 @@
             --positive: #10b981;
             --negative: #ef4444;
             --neutral: #94a3b8;
-            --gold: #f59e0b; /* Color para destacar finales */
+            --gold: #f59e0b; 
         }
 
-        /* ============================================================
-           CAMBIO DE COLOR SECCIÓN FEMENINA A TURQUESA
-           Sobrescribimos las variables solo para este contenedor
-        ============================================================ */
         #seccion-femenino {
-            --primary-color: #0d9488; /* Turquesa oscuro para textos y marcadores */
-            --secondary-color: #22d3ee; /* Turquesa claro para borde superior y acentos */
+            --primary-color: #0d9488; 
+            --secondary-color: #22d3ee; 
         }
-        /* ============================================================ */
 
         body { 
             font-family: 'Inter', sans-serif; 
@@ -39,13 +34,10 @@
             padding: 40px 20px; 
         }
 
-        .header-torneo {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .header-torneo { text-align: center; margin-bottom: 40px; }
 
         h1 { 
-            color: #0055a4; /* Mantenemos el azul original de la UC en el título principal */
+            color: #0055a4; 
             font-size: 2.5rem;
             font-weight: 800;
             text-transform: uppercase;
@@ -54,225 +46,47 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        .subtitle {
-            color: #009de0;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 5px;
-        }
+        .subtitle { color: #009de0; font-weight: 600; font-size: 1.1rem; margin-top: 5px; }
+        .contenedor { display: flex; flex-direction: column; gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .categoria { background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); border-top: 5px solid var(--secondary-color); }
+        h2 { color: var(--primary-color); margin-top: 0; margin-bottom: 20px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .tabla-container { overflow-x: auto; border-radius: 8px; border: 1px solid #e2e8f0; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; white-space: nowrap; }
+        th, td { padding: 14px 16px; text-align: center; }
+        th { background-color: #f8fafc; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; border-bottom: 2px solid #e2e8f0; }
+        tbody tr { border-bottom: 1px solid #f1f5f9; transition: background-color 0.2s ease; }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background-color: #f8fafc; }
+        .col-equipo { text-align: left; font-weight: 600; color: var(--primary-color); font-size: 15px; }
 
-        .contenedor { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 40px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-
-        .categoria { 
-            background: var(--card-bg); 
-            padding: 30px; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); 
-            /* El color del borde superior ahora depende de --secondary-color scoped */
-            border-top: 5px solid var(--secondary-color);
-        }
-
-        h2 {
-            /* El color del título H2 ahora depende de --primary-color scoped */
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .tabla-container { 
-            overflow-x: auto; 
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            font-size: 14px; 
-            white-space: nowrap;
-        }
-
-        th, td { 
-            padding: 14px 16px; 
-            text-align: center; 
-        }
-
-        th { 
-            background-color: #f8fafc; 
-            color: var(--text-muted); 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        tbody tr {
-            border-bottom: 1px solid #f1f5f9;
-            transition: background-color 0.2s ease;
-        }
-
-        tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        tbody tr:hover {
-            background-color: #f8fafc;
-        }
-
-        .col-equipo { 
-            text-align: left; 
-            font-weight: 600; 
-            /* El color del nombre del equipo depende de --primary-color scoped */
-            color: var(--primary-color); 
-            font-size: 15px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: white;
-            min-width: 24px;
-        }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; color: white; min-width: 24px; }
         .badge.positivo { background-color: var(--positive); }
         .badge.negativo { background-color: var(--negative); }
         .badge.neutro { background-color: var(--neutral); color: white; }
 
-        .historial-partidos { 
-            margin-top: 30px; 
-        }
-
-        .historial-partidos h3 {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 8px;
-        }
-
-        .lista-partidos { 
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        .partido-card { 
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            transition: transform 0.2s;
-        }
-
-        .partido-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .partido-card.playoff {
-            border: 1px solid var(--gold);
-            background: #fffbeb; 
-        }
+        .historial-partidos { margin-top: 30px; }
+        .historial-partidos h3 { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+        .lista-partidos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
         
-        .playoff-etiqueta {
-            color: var(--gold);
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
-        }
-
-        .partido-fecha { 
-            font-size: 0.8rem; 
-            color: var(--text-muted); 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .partido-resultado {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
+        .partido-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; display: flex; flex-direction: column; gap: 8px; transition: transform 0.2s; }
+        .partido-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .partido-card.playoff { border: 1px solid var(--gold); background: #fffbeb; }
+        .playoff-etiqueta { color: var(--gold); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; text-align: center; letter-spacing: 1px; margin-bottom: 2px; }
+        
+        .partido-fecha { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .partido-resultado { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.1rem; }
         .eq-nombre { flex: 1; font-size: 0.95rem; }
         .eq-nombre.right { text-align: right; }
         
-        .marcador-sets {
-            /* El fondo del marcador depende de --primary-color scoped */
-            background: var(--primary-color);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 6px;
-            margin: 0 10px;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-        }
-        
-        .marcador-pendiente {
-            background: var(--neutral);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 6px;
-            margin: 0 10px;
-            font-size: 1rem;
-        }
+        .marcador-sets { background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 6px; margin: 0 10px; font-size: 1.2rem; letter-spacing: 2px; }
+        .marcador-pendiente { background: var(--neutral); color: white; padding: 4px 12px; border-radius: 6px; margin: 0 10px; font-size: 1rem; }
+        .partido-detalles { text-align: center; font-size: 0.85rem; color: var(--text-main); background: rgba(0,0,0,0.04); padding: 6px; border-radius: 4px; margin-top: 5px; font-weight: 600; }
+        .puntos-totales { display: block; font-size: 0.75rem; color: var(--text-muted); font-weight: normal; margin-top: 2px; }
 
-        .partido-detalles {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            background: rgba(0,0,0,0.03);
-            padding: 4px;
-            border-radius: 4px;
-            margin-top: 5px;
-        }
+        td:nth-child(2) { font-weight: 800; color: var(--primary-color); font-size: 1.1rem; background-color: #f8fafc; }
+        .separador-fase { grid-column: 1 / -1; margin-top: 15px; margin-bottom: 5px; font-size: 1.1rem; color: var(--primary-color); font-weight: 800; text-transform: uppercase; }
 
-        td:nth-child(2) {
-            font-weight: 800;
-            /* La columna PJE depende de --primary-color scoped */
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            background-color: #f8fafc;
-        }
-
-        .separador-fase {
-            grid-column: 1 / -1;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-            /* Título separador depende de --primary-color scoped */
-            color: var(--primary-color);
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 20px 10px; }
-            .categoria { padding: 15px; }
-            h1 { font-size: 1.8rem; }
-        }
+        @media (max-width: 768px) { body { padding: 20px 10px; } .categoria { padding: 15px; } h1 { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
@@ -332,10 +146,11 @@
         const equiposFemenino = ["Universidad Católica", "Colo Colo", "Boston College", "Stadio Italiano"];
 
         // 2. BASE DE DATOS DE PARTIDOS (FIXTURE)
+        //{ fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Zada", jugado: true, setsA: 2, setsB: 1, s1A: 25, s1B: 20, s2A: 23, s2B: 25, s3A: 25, s3B: 15 }
         const partidosJugados = {
             masculino: [
-                { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Excelsior", equipoB: "Stadio Italiano", jugado: false },
-                { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Zada", jugado: false },
+                { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Excelsior", equipoB: "Stadio Italiano", jugado: true, setsA: 2, setsB: 1, s1A: 29, s1B: 27, s2A: 25, s2B: 16, s3A: 23, s3B: 25 },
+                { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Zada", jugado: true, setsA: 0, setsB: 3, s1A: 17, s1B: 25, s2A: 21, s2B: 25, s3A: 23, s3B: 25},
                 { fecha: "Sáb 16 Mayo - 17:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
                 { fecha: "Sáb 16 Mayo - 18:45 hrs", equipoA: "Excelsior", equipoB: "Zada", jugado: false },
                 { fecha: "Dom 17 Mayo - 14:30 hrs", equipoA: "Universidad Católica", equipoB: "Excelsior", jugado: false },
@@ -344,8 +159,8 @@
                 { fecha: "Dom 17 Mayo - 18:30 hrs", equipoA: "1° Lugar Varones", equipoB: "2° Lugar Varones", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
             ],
             femenino: [
-                { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Colo Colo", equipoB: "Stadio Italiano", jugado: false },
-                { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Boston College", jugado: false },
+                { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Colo Colo", equipoB: "Stadio Italiano", jugado: true, setsA: 3, setsB: 0, s1A: 25, s1B: 15, s2A: 25, s2B: 20, s3A: 25, s3B: 13  },
+                { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Boston College", jugado: true, setsA: 2, setsB: 1, s1A: 25, s1B: 17, s2A: 21, s2B: 25, s3A: 25, s3B: 15 },
                 { fecha: "Sáb 16 Mayo - 17:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
                 { fecha: "Sáb 16 Mayo - 18:45 hrs", equipoA: "Colo Colo", equipoB: "Boston College", jugado: false },
                 { fecha: "Dom 17 Mayo - 14:30 hrs", equipoA: "Universidad Católica", equipoB: "Colo Colo", jugado: false },
@@ -356,7 +171,7 @@
         };
 
         // =====================================================================
-        // LÓGICA DE CÁLCULO Y RENDERIZADO (INTACTA)
+        // LÓGICA DE CÁLCULO Y RENDERIZADO
         // =====================================================================
 
         function calcularYMostrar() {
@@ -369,29 +184,40 @@
                 }));
 
                 partidos.forEach(p => {
-                    if (p.jugado && !p.esPlayoff) {
-                        let eqA = stats.find(e => e.nombre === p.equipoA);
-                        let eqB = stats.find(e => e.nombre === p.equipoB);
+                    if (p.jugado) {
+                        // 1. CÁLCULO AUTOMÁTICO DE PUNTOS TOTALES SEGÚN LOS SETS INGRESADOS
+                        p.ptosA_total = (p.s1A || 0) + (p.s2A || 0) + (p.s3A || 0);
+                        p.ptosB_total = (p.s1B || 0) + (p.s2B || 0) + (p.s3B || 0);
 
-                        if(eqA && eqB) {
-                            eqA.ptdos++; eqB.ptdos++;
-                            eqA.set_plus += p.setsA; eqA.set_minus += p.setsB;
-                            eqB.set_plus += p.setsB; eqB.set_minus += p.setsA;
-                            eqA.ptos_plus += p.ptosA; eqA.ptos_minus += p.ptosB;
-                            eqB.ptos_plus += p.ptosB; eqB.ptos_minus += p.ptosA;
+                        // 2. SOLO ASIGNAR A LA TABLA SI NO ES FASE FINAL
+                        if (!p.esPlayoff) {
+                            let eqA = stats.find(e => e.nombre === p.equipoA);
+                            let eqB = stats.find(e => e.nombre === p.equipoB);
 
-                            let difSets = Math.abs(p.setsA - p.setsB);
-                            if (p.setsA > p.setsB) {
-                                eqA.gndos++;
-                                if (difSets >= 2) { eqA.pje += 3; } else { eqA.pje += 2; eqB.pje += 1; }
-                            } else if (p.setsB > p.setsA) {
-                                eqB.gndos++;
-                                if (difSets >= 2) { eqB.pje += 3; } else { eqB.pje += 2; eqA.pje += 1; }
+                            if(eqA && eqB) {
+                                eqA.ptdos++; eqB.ptdos++;
+                                
+                                eqA.set_plus += p.setsA; eqA.set_minus += p.setsB;
+                                eqB.set_plus += p.setsB; eqB.set_minus += p.setsA;
+                                
+                                // Se usan los totales calculados automáticamente
+                                eqA.ptos_plus += p.ptosA_total; eqA.ptos_minus += p.ptosB_total;
+                                eqB.ptos_plus += p.ptosB_total; eqB.ptos_minus += p.ptosA_total;
+
+                                eqA.pje += p.setsA;
+                                eqB.pje += p.setsB;
+
+                                if (p.setsA > p.setsB) {
+                                    eqA.gndos++;
+                                } else if (p.setsB > p.setsA) {
+                                    eqB.gndos++;
+                                }
                             }
                         }
                     }
                 });
 
+                // ORDENAMIENTO DE TABLA
                 stats.sort((a, b) => {
                     if (b.pje !== a.pje) return b.pje - a.pje;
                     let aSetAvg = a.set_minus === 0 ? a.set_plus : a.set_plus / a.set_minus;
@@ -402,6 +228,7 @@
                     return bPtosAvg - aPtosAvg;
                 });
 
+                // DIBUJAR TABLA
                 let tbody = document.querySelector(`#tabla-${cat} tbody`);
                 tbody.innerHTML = '';
                 stats.forEach(eq => {
@@ -422,9 +249,9 @@
                     `;
                 });
 
+                // DIBUJAR FIXTURE Y RESULTADOS
                 let historialDiv = document.getElementById(`historial-${cat}`);
                 historialDiv.innerHTML = '';
-                
                 let mostroPlayoffs = false;
 
                 partidos.forEach(p => {
@@ -437,6 +264,9 @@
                     let htmlEtiqueta = p.esPlayoff ? `<div class="playoff-etiqueta">${p.etiqueta}</div>` : "";
                     
                     if (p.jugado) {
+                        // Construcción del texto de los sets
+                        let detalleSets = `S1: ${p.s1A||0}-${p.s1B||0} | S2: ${p.s2A||0}-${p.s2B||0} | S3: ${p.s3A||0}-${p.s3B||0}`;
+
                         historialDiv.innerHTML += `
                             <div class="${claseCard}">
                                 ${htmlEtiqueta}
@@ -446,7 +276,10 @@
                                     <div class="marcador-sets">${p.setsA} - ${p.setsB}</div>
                                     <div class="eq-nombre right">${p.equipoB}</div>
                                 </div>
-                                <div class="partido-detalles">Puntos: ${p.ptosA} - ${p.ptosB}</div>
+                                <div class="partido-detalles">
+                                    ${detalleSets}
+                                    <span class="puntos-totales">(Total Pts: ${p.ptosA_total} - ${p.ptosB_total})</span>
+                                </div>
                             </div>
                         `;
                     } else {
@@ -459,7 +292,7 @@
                                     <div class="marcador-pendiente">VS</div>
                                     <div class="eq-nombre right">${p.equipoB}</div>
                                 </div>
-                                <div class="partido-detalles">Por jugar</div>
+                                <div class="partido-detalles" style="font-weight: normal;">Por jugar</div>
                             </div>
                         `;
                     }
