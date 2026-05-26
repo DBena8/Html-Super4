@@ -93,12 +93,13 @@
 
     <div class="header-torneo">
         <h1>Súper 4 Vóleibol UC</h1>
-        <div class="subtitle">Copa Mikasa U18</div>
+        <div class="subtitle">Copa Mikasa U18 - Formato Mejor de 5 Sets</div>
     </div>
 
     <div class="contenedor">
+        <!-- CATEGORÍA MASCULINA -->
         <div class="categoria" id="seccion-masculino">
-            <h2>🏆 Varones - Cancha 2</h2>
+            <h2>🏆 Varones</h2>
             <div class="tabla-container">
                 <table id="tabla-masculino">
                     <thead>
@@ -118,8 +119,9 @@
             </div>
         </div>
 
+        <!-- CATEGORÍA FEMENINA -->
         <div class="categoria" id="seccion-femenino">
-            <h2>🏆 Damas - Cancha 1</h2>
+            <h2>🏆 Damas</h2>
             <div class="tabla-container">
                 <table id="tabla-femenino">
                     <thead>
@@ -142,31 +144,29 @@
 
     <script>
         // 1. EQUIPOS DE LA COPA MIKASA
-        const equiposMasculino = ["Universidad Católica", "Excelsior", "Stadio Italiano", "Zada"];
-        const equiposFemenino = ["Universidad Católica", "Colo Colo", "Boston College", "Stadio Italiano"];
+        const equiposMasculino = ["Universidad Católica", "Excelsior", "Stadio Italiano", "ARV"];
+        const equiposFemenino = ["Universidad Católica", "Colo Colo", "Excelsior", "Stadio Italiano"];
 
         // 2. BASE DE DATOS DE PARTIDOS (FIXTURE)
-        //{ fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Zada", jugado: true, setsA: 2, setsB: 1, s1A: 25, s1B: 20, s2A: 23, s2B: 25, s3A: 25, s3B: 15 }
+        // { fecha: "Lun 25 Mayo - 19:30 hrs", equipoA: "Excelsior", equipoB: "Stadio Italiano", jugado: true, setsA: 3, setsB: 2, s1A: 25, s1B: 20, s2A: 23, s2B: 25, s3A: 25, s3B: 18, s4A: 21, s4B: 25, s5A: 15, s5B: 12 }
         const partidosJugados = {
             masculino: [
-                { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Excelsior", equipoB: "Stadio Italiano", jugado: true, setsA: 2, setsB: 1, s1A: 29, s1B: 27, s2A: 25, s2B: 16, s3A: 23, s3B: 25 },
-                { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Zada", jugado: true, setsA: 0, setsB: 3, s1A: 17, s1B: 25, s2A: 21, s2B: 25, s3A: 23, s3B: 25},
-                { fecha: "Sáb 16 Mayo - 17:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
-                { fecha: "Sáb 16 Mayo - 18:45 hrs", equipoA: "Excelsior", equipoB: "Zada", jugado: false },
-                { fecha: "Dom 17 Mayo - 14:30 hrs", equipoA: "Universidad Católica", equipoB: "Excelsior", jugado: false },
-                { fecha: "Dom 17 Mayo - 15:45 hrs", equipoA: "Zada", equipoB: "Stadio Italiano", jugado: false },
-                { fecha: "Dom 17 Mayo - 17:00 hrs", equipoA: "3° Lugar Varones", equipoB: "4° Lugar Varones", jugado: false, esPlayoff: true, etiqueta: "Tercer Lugar" },
-                { fecha: "Dom 17 Mayo - 18:30 hrs", equipoA: "1° Lugar Varones", equipoB: "2° Lugar Varones", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
+                { fecha: "Lun 25 Mayo - 19:30 hrs", equipoA: "Excelsior", equipoB: "Stadio Italiano", jugado: true, setsA: 3, setsB: 0, s1A: 25, s1B: 16, s2A: 25, s2B: 23, s3A: 25, s3B: 18},
+                { fecha: "Lun 25 Mayo - 21:00 hrs", equipoA: "Universidad Católica", equipoB: "ARV", jugado: true, setsA: 3, setsB: 1, s1A: 22, s1B: 25, s2A: 25, s2B: 19, s3A: 25, s3B: 20, s4A: 25, s4B: 17},
+                { fecha: "Mie 27 Mayo - 20:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false},
+                { fecha: "Lun 1 Junio - 19:30 hrs", equipoA: "ARV", equipoB: "Stadio Italiano", jugado: false},
+                { fecha: "Lun 1 Junio - 21:00 hrs", equipoA: "Universidad Católica", equipoB: "Excelsior", jugado: false },
+                { fecha: "Mie 3 Junio - 20:30 hrs", equipoA: "ARV", equipoB: "Excelsior", jugado: false },
+                { fecha: "Lun 8 Junio - 20:30 hrs", equipoA: "1° Lugar Varones", equipoB: "2° Lugar Varones", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
             ],
             femenino: [
-                { fecha: "Sáb 16 Mayo - 15:00 hrs", equipoA: "Colo Colo", equipoB: "Stadio Italiano", jugado: true, setsA: 3, setsB: 0, s1A: 25, s1B: 15, s2A: 25, s2B: 20, s3A: 25, s3B: 13  },
-                { fecha: "Sáb 16 Mayo - 16:15 hrs", equipoA: "Universidad Católica", equipoB: "Boston College", jugado: true, setsA: 2, setsB: 1, s1A: 25, s1B: 17, s2A: 21, s2B: 25, s3A: 25, s3B: 15 },
-                { fecha: "Sáb 16 Mayo - 17:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
-                { fecha: "Sáb 16 Mayo - 18:45 hrs", equipoA: "Colo Colo", equipoB: "Boston College", jugado: false },
-                { fecha: "Dom 17 Mayo - 14:30 hrs", equipoA: "Universidad Católica", equipoB: "Colo Colo", jugado: false },
-                { fecha: "Dom 17 Mayo - 15:45 hrs", equipoA: "Boston College", equipoB: "Stadio Italiano", jugado: false },
-                { fecha: "Dom 17 Mayo - 17:00 hrs", equipoA: "3° Lugar Damas", equipoB: "4° Lugar Damas", jugado: false, esPlayoff: true, etiqueta: "Tercer Lugar" },
-                { fecha: "Dom 17 Mayo - 18:30 hrs", equipoA: "1° Lugar Damas", equipoB: "2° Lugar Damas", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
+                { fecha: "Lun 25 Mayo - 20:30 hrs", equipoA: "Universidad Católica", equipoB: "Excelsior", jugado: true, setsA: 3, setsB: 0, s1A: 25, s1B: 22, s2A: 25, s2B: 16, s3A: 25, s3B: 19},
+                { fecha: "Mie 27 Mayo - 20:30 hrs", equipoA: "Colo Colo", equipoB: "Stadio Italiano", jugado: false},
+                { fecha: "Vie 29 Mayo - 20:30 hrs (SSCC ALAMEDA)", equipoA: "Universidad Católica", equipoB: "Colo Colo", jugado: false},
+                { fecha: "Vie 29 Mayo - 20:30 hrs (SSCC ALAMEDA)", equipoA: "Stadio Italiano", equipoB: "Excelsior", jugado: false}, // Corregido el espacio extra en Excelsior
+                { fecha: "Lun 1 Junio - 20:30 hrs", equipoA: "Universidad Católica", equipoB: "Stadio Italiano", jugado: false },
+                { fecha: "Mie 3 Junio - 20:30 hrs", equipoA: "Colo Colo", equipoB: "Excelsior", jugado: false },
+                { fecha: "Lun 8 Junio - 20:30 hrs", equipoA: "1° Lugar Damas", equipoB: "2° Lugar Damas", jugado: false, esPlayoff: true, etiqueta: "GRAN FINAL" }
             ]
         };
 
@@ -185,9 +185,9 @@
 
                 partidos.forEach(p => {
                     if (p.jugado) {
-                        // 1. CÁLCULO AUTOMÁTICO DE PUNTOS TOTALES SEGÚN LOS SETS INGRESADOS
-                        p.ptosA_total = (p.s1A || 0) + (p.s2A || 0) + (p.s3A || 0);
-                        p.ptosB_total = (p.s1B || 0) + (p.s2B || 0) + (p.s3B || 0);
+                        // 1. CÁLCULO AUTOMÁTICO DE PUNTOS TOTALES SEGÚN LOS SETS INGRESADOS (HASTA 5 SETS)
+                        p.ptosA_total = (p.s1A || 0) + (p.s2A || 0) + (p.s3A || 0) + (p.s4A || 0) + (p.s5A || 0);
+                        p.ptosB_total = (p.s1B || 0) + (p.s2B || 0) + (p.s3B || 0) + (p.s4B || 0) + (p.s5B || 0);
 
                         // 2. SOLO ASIGNAR A LA TABLA SI NO ES FASE FINAL
                         if (!p.esPlayoff) {
@@ -200,24 +200,33 @@
                                 eqA.set_plus += p.setsA; eqA.set_minus += p.setsB;
                                 eqB.set_plus += p.setsB; eqB.set_minus += p.setsA;
                                 
-                                // Se usan los totales calculados automáticamente
                                 eqA.ptos_plus += p.ptosA_total; eqA.ptos_minus += p.ptosB_total;
                                 eqB.ptos_plus += p.ptosB_total; eqB.ptos_minus += p.ptosA_total;
 
-                                eqA.pje += p.setsA;
-                                eqB.pje += p.setsB;
-
+                                // NUEVA LÓGICA INTERNACIONAL PJE (3-0, 3-1, 3-2)
                                 if (p.setsA > p.setsB) {
                                     eqA.gndos++;
+                                    if (p.setsA === 3 && (p.setsB === 0 || p.setsB === 1)) {
+                                        eqA.pje += 3;
+                                    } else if (p.setsA === 3 && p.setsB === 2) {
+                                        eqA.pje += 2;
+                                        eqB.pje += 1;
+                                    }
                                 } else if (p.setsB > p.setsA) {
                                     eqB.gndos++;
+                                    if (p.setsB === 3 && (p.setsA === 0 || p.setsA === 1)) {
+                                        eqB.pje += 3;
+                                    } else if (p.setsB === 3 && p.setsA === 2) {
+                                        eqB.pje += 2;
+                                        eqA.pje += 1;
+                                    }
                                 }
                             }
                         }
                     }
                 });
 
-                // ORDENAMIENTO DE TABLA
+                // ORDENAMIENTO DE TABLA (Prioridad: Puntos > Ratio Sets > Ratio Puntos)
                 stats.sort((a, b) => {
                     if (b.pje !== a.pje) return b.pje - a.pje;
                     let aSetAvg = a.set_minus === 0 ? a.set_plus : a.set_plus / a.set_minus;
@@ -264,8 +273,14 @@
                     let htmlEtiqueta = p.esPlayoff ? `<div class="playoff-etiqueta">${p.etiqueta}</div>` : "";
                     
                     if (p.jugado) {
-                        // Construcción del texto de los sets
+                        // Construcción dinámica del texto de los sets (Muestra S4 y S5 solo si existen)
                         let detalleSets = `S1: ${p.s1A||0}-${p.s1B||0} | S2: ${p.s2A||0}-${p.s2B||0} | S3: ${p.s3A||0}-${p.s3B||0}`;
+                        if (p.s4A !== undefined || p.s4B !== undefined) {
+                            detalleSets += ` | S4: ${p.s4A||0}-${p.s4B||0}`;
+                        }
+                        if (p.s5A !== undefined || p.s5B !== undefined) {
+                            detalleSets += ` | S5: ${p.s5A||0}-${p.s5B||0}`;
+                        }
 
                         historialDiv.innerHTML += `
                             <div class="${claseCard}">
